@@ -1,0 +1,30 @@
+{
+  "name": "monitor-exporter",
+  "version": "1.0.0",
+  "description": "monitor-exporter",
+  "main": "monitor-exporter.js",
+  "scripts": {
+    "test": "node monitor-exporter.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weijun-sh/monitor-exporter.git"
+  },
+  "keywords": [
+    "monitor",
+    "exporter"
+  ],
+  "author": "dannyZhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/weijun-sh/monitor-exporter/issues"
+  },
+  "homepage": "https://github.com/weijun-sh/monitor-exporter#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.18.1",
+    "fs": "^0.0.1-security",
+    "mongodb": "^4.6.0",
+    "path": "^0.12.7"
+  }
+}
