@@ -37,12 +37,16 @@ async function readMetrics() {
                 const path =     `path="${disk}"`;
                 const node =     `node="${fullnode}"`;
                 const mounted =  `mounted="${Mounted}"`;
+                const total = parseFloat(Total);
+                const usedValue =  parseFloat(Used);
+                const availableValue = parseFloat(Avaliable)
+                const percentValue = parseFloat(Use)
 
-                let params = `{${path}", ${node}, ${mounted}}`;
-                let blocks =     `sv_disk_blocks    ${params} ${Total}\n`;
-                let used =       `sv_disk_used      ${params} ${Used}\n`;
-                let available =  `sv_disk_available ${params} ${Avaliable}\n`;
-                let percent =    `sv_disk_percent   ${params} ${Use}\n\n`;
+                let params = `{${path}, ${node}, ${mounted}}`;
+                let blocks =     `sv_disk_blocks    ${params} ${total}\n`;
+                let used =       `sv_disk_used      ${params} ${usedValue}\n`;
+                let available =  `sv_disk_available ${params} ${availableValue}\n`;
+                let percent =    `sv_disk_percent   ${params} ${percentValue}\n\n`;
                 let note = `#${fullnode} === ${disk} ===\n\n`
                 let m = `${note}${blocks}${used}${available}${percent}`;
                 metrics += m;

@@ -51,7 +51,6 @@ function readDisk(){
                 reject && reject(`mongoError readFail_${err.toString()}`)
                 return
             }
-            console.log(result);
             resolve && resolve(result)
 
         });

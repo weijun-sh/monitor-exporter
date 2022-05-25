@@ -1,0 +1,35 @@
+#node16 === /dev/vda1 ===
+
+sv_disk_blocks    {path="/dev/vda1", node="node16", mounted="/"} 59
+sv_disk_used      {path="/dev/vda1", node="node16", mounted="/"} 40
+sv_disk_available {path="/dev/vda1", node="node16", mounted="/"} 17
+sv_disk_percent   {path="/dev/vda1", node="node16", mounted="/"} 71
+
+#node16 === /dev/vdb1 ===
+
+sv_disk_blocks    {path="/dev/vdb1", node="node16", mounted="/dev/vdb1"} 6201
+sv_disk_used      {path="/dev/vdb1", node="node16", mounted="/dev/vdb1"} 5164
+sv_disk_available {path="/dev/vdb1", node="node16", mounted="/dev/vdb1"} 755
+sv_disk_percent   {path="/dev/vdb1", node="node16", mounted="/dev/vdb1"} 88
+
+#node6 === /dev/vda1 ===
+
+sv_disk_blocks    {path="/dev/vda1", node="node6", mounted="/"} 99
+sv_disk_used      {path="/dev/vda1", node="node6", mounted="/"} 41
+sv_disk_available {path="/dev/vda1", node="node6", mounted="/"} 54
+sv_disk_percent   {path="/dev/vda1", node="node6", mounted="/"} 44
+
+#node6 === /dev/vdb1 ===
+
+sv_disk_blocks    {path="/dev/vdb1", node="node6", mounted="/dev/vdb1"} 2460
+sv_disk_used      {path="/dev/vdb1", node="node6", mounted="/dev/vdb1"} 2034
+sv_disk_available {path="/dev/vdb1", node="node6", mounted="/dev/vdb1"} 308
+sv_disk_percent   {path="/dev/vdb1", node="node6", mounted="/dev/vdb1"} 87
+
+#node6 === /dev/vdc1 ===
+
+sv_disk_blocks    {path="/dev/vdc1", node="node6", mounted="/dev/vdc1"} 1968
+sv_disk_used      {path="/dev/vdc1", node="node6", mounted="/dev/vdc1"} 1800
+sv_disk_available {path="/dev/vdc1", node="node6", mounted="/dev/vdc1"} 78
+sv_disk_percent   {path="/dev/vdc1", node="node6", mounted="/dev/vdc1"} 96
+
