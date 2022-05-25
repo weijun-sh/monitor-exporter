@@ -47,7 +47,7 @@ async function readMetrics() {
                 let used =       `sv_disk_used      ${params} ${usedValue}\n`;
                 let available =  `sv_disk_available ${params} ${availableValue}\n`;
                 let percent =    `sv_disk_percent   ${params} ${percentValue}\n\n`;
-                let note = `#${fullnode} === ${disk} ===\n\n`
+                let note = `# 服务器: ${fullnode} 路径: ${disk} ， 挂载: ${Mounted} \n\n`
                 let m = `${note}${blocks}${used}${available}${percent}`;
                 metrics += m;
             })
