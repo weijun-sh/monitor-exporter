@@ -21,15 +21,14 @@ const DiskField = {
     Use: 'Use',
     Mounted: 'Mounted',
     timestamp: 'timestamp'
-
 }
 
-function connectMongo(){
+function connectMongo() {
     return new Promise((resolve, reject) => {
-        MongoClient.connect(authLink, function(err, db) {
+        MongoClient.connect(authLink, function (err, db) {
             if (err) {
 
-                reject && reject();
+                reject && reject(err);
                 return;
             }
             _database = db;
@@ -39,32 +38,45 @@ function connectMongo(){
 
 }
 
-function readDisk(){
+
+
+function readMongo(tableName) {
     return new Promise((resolve, reject) => {
-        if(!_database){
-            reject("mongoError notConnected")
+        if (!_database) {
+            reject("mongoError notConnected");
+            connectMongo().then(() => {
+                console.log("连接成功");
+            }).catch((err) => {
+                console.log("连接失败", err);
+            })
             return;
         }
         const dbo = _database.db(dbName);
-        dbo.collection(tableName). find({}).toArray(function(err, result) { // 返回集合中所有数据
+        dbo.collection(tableName).
+        find().
+        sort({
+          timestamp: -1
+        }).limit(70).
+        toArray(function (err, result) { // 返回集合中所有数据
             if (err) {
                 reject && reject(`mongoError readFail_${err.toString()}`)
                 return
             }
             resolve && resolve(result)
-
         });
     })
 
 }
 
-function closeConnect(){
-    _database.close().then((() => {})).catch(() => {});
+function closeConnect() {
+    _database.close().then((() => {
+    })).catch(() => {
+    });
 }
 
 
 module.exports = {
-    readDisk,
+    readMongo,
     connectMongo,
     closeConnect
 }
