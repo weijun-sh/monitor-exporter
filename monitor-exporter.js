@@ -1,12 +1,19 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 const fs = require("fs");
+const ejs = require("ejs");
 const path = require("path");
 const {readMongo, connectMongo, closeConnect} = require('./mongodb');
 const diskTableName = 'disk';
 const Port = 10010;
 
+const viewsPath = path.join(__dirname, 'views');
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
+app.set('views', viewsPath);
+app.set('view engine', 'ejs');
 
 connectMongo().then(() => {
     console.log("连接mongo 成功");
@@ -120,6 +127,17 @@ app.get("/close", async (req, res) => {
     closeConnect();
     process.exit(0);
 });
+
+app.get('/webview/9090', function (req, res){
+    res.render('webview',{
+        url: "http://localhost:9090"
+    })
+})
+app.get('/webview/9093', function (req, res){
+    res.render('webview',{
+        url: "http://localhost:9093"
+    })
+})
 
 //3.调用app.listen()函数启动服务器
 app.listen(Port, () => {

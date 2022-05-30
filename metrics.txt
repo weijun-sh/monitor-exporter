@@ -1,119 +1,14 @@
-# 0 2022/5/27 04:20  服务器: node00 路径: /dev/vdb ， 挂载: /opt 
-
-sv_disk_blocks    {path="/dev/vdb", node="node00", mounted="/opt"} 1870
-sv_disk_used      {path="/dev/vdb", node="node00", mounted="/opt"} 1450
-sv_disk_available {path="/dev/vdb", node="node00", mounted="/opt"} 334
-sv_disk_percent   {path="/dev/vdb", node="node00", mounted="/opt"} 82
-
-# 1 2022/5/27 04:10  服务器: node00 路径: /dev/vda1 ， 挂载: / 
-
-sv_disk_blocks    {path="/dev/vda1", node="node00", mounted="/"} 99
-sv_disk_used      {path="/dev/vda1", node="node00", mounted="/"} 51
-sv_disk_available {path="/dev/vda1", node="node00", mounted="/"} 44
-sv_disk_percent   {path="/dev/vda1", node="node00", mounted="/"} 54
-
-# 2 2022/5/27 04:20  服务器: node06 路径: /dev/vdb1 ， 挂载: /opt 
-
-sv_disk_blocks    {path="/dev/vdb1", node="node06", mounted="/opt"} 2460
-sv_disk_used      {path="/dev/vdb1", node="node06", mounted="/opt"} 2038
-sv_disk_available {path="/dev/vdb1", node="node06", mounted="/opt"} 304
-sv_disk_percent   {path="/dev/vdb1", node="node06", mounted="/opt"} 88
-
-# 3 2022/5/27 04:20  服务器: node06 路径: /dev/vdc1 ， 挂载: /mnt 
-
-sv_disk_blocks    {path="/dev/vdc1", node="node06", mounted="/mnt"} 1968
-sv_disk_used      {path="/dev/vdc1", node="node06", mounted="/mnt"} 1811
-sv_disk_available {path="/dev/vdc1", node="node06", mounted="/mnt"} 67
-sv_disk_percent   {path="/dev/vdc1", node="node06", mounted="/mnt"} 97
-
-# 4 2022/5/27 04:20  服务器: node06 路径: /dev/vda1 ， 挂载: / 
-
-sv_disk_blocks    {path="/dev/vda1", node="node06", mounted="/"} 99
-sv_disk_used      {path="/dev/vda1", node="node06", mounted="/"} 42
-sv_disk_available {path="/dev/vda1", node="node06", mounted="/"} 53
-sv_disk_percent   {path="/dev/vda1", node="node06", mounted="/"} 44
-
-# 5 2022/5/27 04:20  服务器: node10 路径: /dev/vdb1 ， 挂载: /mnt 
-
-sv_disk_blocks    {path="/dev/vdb1", node="node10", mounted="/mnt"} 1771
-sv_disk_used      {path="/dev/vdb1", node="node10", mounted="/mnt"} 1500
-sv_disk_available {path="/dev/vdb1", node="node10", mounted="/mnt"} 190
-sv_disk_percent   {path="/dev/vdb1", node="node10", mounted="/mnt"} 89
-
-# 6 2022/5/27 04:10  服务器: node10 路径: /dev/vda1 ， 挂载: / 
-
-sv_disk_blocks    {path="/dev/vda1", node="node10", mounted="/"} 99
-sv_disk_used      {path="/dev/vda1", node="node10", mounted="/"} 87
-sv_disk_available {path="/dev/vda1", node="node10", mounted="/"} 8
-sv_disk_percent   {path="/dev/vda1", node="node10", mounted="/"} 92
-
-# 7 2022/5/27 04:20  服务器: node16 路径: /dev/vda1 ， 挂载: / 
-
-sv_disk_blocks    {path="/dev/vda1", node="node16", mounted="/"} 59
-sv_disk_used      {path="/dev/vda1", node="node16", mounted="/"} 44
-sv_disk_available {path="/dev/vda1", node="node16", mounted="/"} 13
-sv_disk_percent   {path="/dev/vda1", node="node16", mounted="/"} 78
-
-# 8 2022/5/27 04:20  服务器: node16 路径: /dev/vdb1 ， 挂载: /opt 
-
-sv_disk_blocks    {path="/dev/vdb1", node="node16", mounted="/opt"} 6201
-sv_disk_used      {path="/dev/vdb1", node="node16", mounted="/opt"} 5246
-sv_disk_available {path="/dev/vdb1", node="node16", mounted="/opt"} 673
-sv_disk_percent   {path="/dev/vdb1", node="node16", mounted="/opt"} 89
-
-# 9 2022/5/27 04:20  服务器: node17 路径: /dev/vdb1 ， 挂载: /opt 
-
-sv_disk_blocks    {path="/dev/vdb1", node="node17", mounted="/opt"} 2952
-sv_disk_used      {path="/dev/vdb1", node="node17", mounted="/opt"} 2038
-sv_disk_available {path="/dev/vdb1", node="node17", mounted="/opt"} 785
-sv_disk_percent   {path="/dev/vdb1", node="node17", mounted="/opt"} 73
-
-# 10 2022/5/27 04:20  服务器: node17 路径: /dev/vdc1 ， 挂载: /opt/fullnode2 
-
-sv_disk_blocks    {path="/dev/vdc1", node="node17", mounted="/opt/fullnode2"} 492
-sv_disk_used      {path="/dev/vdc1", node="node17", mounted="/opt/fullnode2"} 319
-sv_disk_available {path="/dev/vdc1", node="node17", mounted="/opt/fullnode2"} 148
-sv_disk_percent   {path="/dev/vdc1", node="node17", mounted="/opt/fullnode2"} 69
-
-# 11 2022/5/27 04:10  服务器: node17 路径: /dev/vda1 ， 挂载: / 
-
-sv_disk_blocks    {path="/dev/vda1", node="node17", mounted="/"} 99
-sv_disk_used      {path="/dev/vda1", node="node17", mounted="/"} 64
-sv_disk_available {path="/dev/vda1", node="node17", mounted="/"} 31
-sv_disk_percent   {path="/dev/vda1", node="node17", mounted="/"} 68
-
-# 12 2022/5/27 04:20  服务器: node18 路径: /dev/vda1 ， 挂载: / 
-
-sv_disk_blocks    {path="/dev/vda1", node="node18", mounted="/"} 59
-sv_disk_used      {path="/dev/vda1", node="node18", mounted="/"} 38
-sv_disk_available {path="/dev/vda1", node="node18", mounted="/"} 19
-sv_disk_percent   {path="/dev/vda1", node="node18", mounted="/"} 67
-
-# 13 2022/5/27 04:20  服务器: node18 路径: /dev/vdb1 ， 挂载: /opt 
-
-sv_disk_blocks    {path="/dev/vdb1", node="node18", mounted="/opt"} 2165
-sv_disk_used      {path="/dev/vdb1", node="node18", mounted="/opt"} 1342
-sv_disk_available {path="/dev/vdb1", node="node18", mounted="/opt"} 725
-sv_disk_percent   {path="/dev/vdb1", node="node18", mounted="/opt"} 65
-
-# 14 2022/5/27 04:20  服务器: node18 路径: /dev/vdc1 ， 挂载: /mnt 
-
-sv_disk_blocks    {path="/dev/vdc1", node="node18", mounted="/mnt"} 984
-sv_disk_used      {path="/dev/vdc1", node="node18", mounted="/mnt"} 327
-sv_disk_available {path="/dev/vdc1", node="node18", mounted="/mnt"} 607
-sv_disk_percent   {path="/dev/vdc1", node="node18", mounted="/mnt"} 35
-
-# 15 2022/5/27 04:20  服务器: node19 路径: /dev/vda1 ， 挂载: / 
+# 0 2022/5/30 19:10  服务器: node19 路径: /dev/vda1 ， 挂载: / 
 
 sv_disk_blocks    {path="/dev/vda1", node="node19", mounted="/"} 40
-sv_disk_used      {path="/dev/vda1", node="node19", mounted="/"} 28
-sv_disk_available {path="/dev/vda1", node="node19", mounted="/"} 11
-sv_disk_percent   {path="/dev/vda1", node="node19", mounted="/"} 73
+sv_disk_used      {path="/dev/vda1", node="node19", mounted="/"} 31
+sv_disk_available {path="/dev/vda1", node="node19", mounted="/"} 8
+sv_disk_percent   {path="/dev/vda1", node="node19", mounted="/"} 81
 
-# 16 2022/5/27 04:20  服务器: node19 路径: /dev/vdb1 ， 挂载: /opt 
+# 1 2022/5/30 19:10  服务器: node19 路径: /dev/vdb1 ， 挂载: /opt 
 
 sv_disk_blocks    {path="/dev/vdb1", node="node19", mounted="/opt"} 2952
-sv_disk_used      {path="/dev/vdb1", node="node19", mounted="/opt"} 2813
-sv_disk_available {path="/dev/vdb1", node="node19", mounted="/opt"} 0
-sv_disk_percent   {path="/dev/vdb1", node="node19", mounted="/opt"} 100
+sv_disk_used      {path="/dev/vdb1", node="node19", mounted="/opt"} 2519
+sv_disk_available {path="/dev/vdb1", node="node19", mounted="/opt"} 294
+sv_disk_percent   {path="/dev/vdb1", node="node19", mounted="/opt"} 90
 
