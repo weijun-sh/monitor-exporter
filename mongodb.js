@@ -56,7 +56,7 @@ function readMongo(tableName) {
         find().
         sort({
           timestamp: -1
-        }).limit(70).
+        }).
         toArray(function (err, result) { // 返回集合中所有数据
             if (err) {
                 reject && reject(`mongoError readFail_${err.toString()}`)
