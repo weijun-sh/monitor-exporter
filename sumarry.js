@@ -2,6 +2,7 @@ var ejs = require('ejs');
 var path = require('path');
 let nodemailer = require("nodemailer");
 const {readDiskSummary} = require("./disk");
+const {readConf, readConfigs} = require("./resolveConf");
 
 let transporter = nodemailer.createTransport({
     host: 'smtp.163.com:465',
@@ -9,21 +10,31 @@ let transporter = nodemailer.createTransport({
     secure: true, //是否使用安全连接，对https协议的
     port: 465, //qq邮件服务所占用的端口
     auth: {
-        user: "multichainmonitor@163.com",//开启SMTP的邮箱，发件人
-        pass: "YQRJZAEQBXJFKKZP"// qq授权码
+        user: readConf("auth_user"),//开启SMTP的邮箱，发件人
+        pass: readConf("auth_pass")// qq授权码
     }
 })
 
-let options = {};
-options.from = 'multichainmonitor@163.com'; //发送方
-options.to = "747954470@qq.com";//接收方
-options.subject = '服务器监控概况';//邮件主题
+function getOptions(obj){
+    let options = {};
+    let configs = readConfigs();
+    console.log("configs ==>", configs)
+    options.subject = configs.subject;
+    options.to = configs.to;
+    options.from = configs.from;
+
+    for(let key in obj){
+        options[key] = obj[key]
+    }
+
+    return options
+
+}
 
 
 function sendSummaryEmail() {
     return readSummaryHtml().then((html) => {
-        options.html = html;
-        let data = transporter.sendMail(options, (err, info) => {
+        let data = transporter.sendMail(getOptions({html}), (err, info) => {
             if (err) {
                 console.log("发送失败")
             } else {
@@ -31,8 +42,7 @@ function sendSummaryEmail() {
             }
         })
     }).catch((err) => {
-        options.subject = "服务器监控读取失败";
-        let data = transporter.sendMail(options, (err, info) => {
+        let data = transporter.sendMail(getOptions({html:"服务器监控读取失败"}), (err, info) => {
             if (err) {
                 console.log("发送失败")
             } else {
@@ -62,7 +72,6 @@ function readSummaryHtml() {
                     reject(err)
                     return;
                 }
-                options.html = html;
 
                 resolve(html)
             });
@@ -72,6 +81,23 @@ function readSummaryHtml() {
     })
 
 }
+
+(function sendFn(time){
+    setTimeout(() => {
+        console.log("time out ==>", time)
+        if(readConf("sendEmail")){
+
+            sendSummaryEmail().then(() => {
+                console.log("发送成功");
+            }).catch(() => {
+                console.log("发送失败");
+            });
+
+            sendFn(readConf("sendInterval"))
+        }
+
+    }, time);
+})(readConf("sendInterval"))
 
 module.exports = {
     readSummaryHtml,

@@ -6,11 +6,14 @@
 </head>
 <body>
     <% list.forEach(data => { %>
-        <table style="margin-top: 2px;border-collapse: collapse;border-spacing: 0;width: 100vw;box-shadow: 2px 2px 2px 2px #ACBED1">
+        <table style="margin-top: 2px;border-collapse: collapse;border-spacing: 0;width: 97vw;box-shadow: 2px 2px 2px 2px #ACBED1">
             <thead>
             <tr>
                 <td colspan="6" style="text-align: center;border: 1px solid #ACBED1;font-size: 12px;color: cadetblue;font-weight: 600">
-                    <%= data.node %> <%= data.time %>
+                    <%= data.node %>
+                    <span style="float: right;font-size: 12px; color: cornflowerblue; margin-right: 4px">
+                        <%= data.time %>
+                    </span>
                 </td>
             </tr>
             </thead>

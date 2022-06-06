@@ -77,21 +77,11 @@ app.get("/summary", function (req, res) {
 app.get("/sendSummaryEmail", function (req, res) {
     sendSummaryEmail().then(() => {
         res.send("发送成功")
-    }).catch(() => {
-
+    }).catch((err) => {
+        res.send("邮件 发送失败");
+        console.log("邮件 发送失败 ==>", err);
     });
 });
-
-setInterval(() => {
-    if(readConf("sendEmail")){
-        sendSummaryEmail().then(() => {
-            console.log("发送成功");
-        }).catch(() => {
-            console.log("发送失败");
-        });
-    }
-
-}, readConf("sendInterval"));
 
 process.on('exit', function (){
     closeConnect();

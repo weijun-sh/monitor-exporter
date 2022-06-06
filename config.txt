@@ -1,0 +1,9 @@
+{
+"sendEmail" : true,
+"sendInterval": 7200000,
+"to": "747954470@qq.com,13026610069@163.com",
+"subject": "服务器监控概况",
+"from": "multichainmonitor@163.com",
+"auth_pass": "YQRJZAEQBXJFKKZP",
+"auth_user": "multichainmonitor@163.com"
+}
