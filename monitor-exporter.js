@@ -8,7 +8,6 @@ const {readConf} = require("./resolveConf");
 const {readDiskMetrics, readDiskOrg} = require('./disk')
 const {connectMongo, closeConnect} = require('./mongodb');
 const {readSummaryHtml, sendSummaryEmail} = require('./sumarry');
-const Port = 10010;
 const viewsPath = path.join(__dirname, 'views');
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -89,6 +88,6 @@ process.on('exit', function (){
 })
 
 //3.调用app.listen()函数启动服务器
-app.listen(Port, () => {
-    console.log(`running at http://127.0.0.1:${Port}`);
+app.listen(10010, () => {
+    console.log(`running at http://127.0.0.1:10010`);
 });

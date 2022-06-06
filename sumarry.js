@@ -18,7 +18,6 @@ let transporter = nodemailer.createTransport({
 function getOptions(obj){
     let options = {};
     let configs = readConfigs();
-    console.log("configs ==>", configs)
     options.subject = configs.subject;
     options.to = configs.to;
     options.from = configs.from;
@@ -84,7 +83,6 @@ function readSummaryHtml() {
 
 (function sendFn(time){
     setTimeout(() => {
-        console.log("time out ==>", time)
         if(readConf("sendEmail")){
 
             sendSummaryEmail().then(() => {
