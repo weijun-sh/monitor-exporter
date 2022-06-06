@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>服务器监控概览</title>
+</head>
+<body>
+    <% list.forEach(data => { %>
+        <table style="margin-top: 2px;border-collapse: collapse;border-spacing: 0;width: 100vw;box-shadow: 2px 2px 2px 2px #ACBED1">
+            <thead>
+            <tr>
+                <td colspan="6" style="text-align: center;border: 1px solid #ACBED1;font-size: 12px;color: cadetblue;font-weight: 600">
+                    <%= data.node %> <%= data.time %>
+                </td>
+            </tr>
+            </thead>
+            <thead>
+            <tr>
+                <td style="border:1px solid #ACBED1;font-size: 12px"> 路径</td>
+                <td style="border:1px solid #ACBED1;font-size: 12px"> 挂载点</td>
+                <td style="border:1px solid #ACBED1;font-size: 12px"> 容量</td>
+                <td style="border:1px solid #ACBED1;font-size: 12px"> 已用</td>
+                <td style="border:1px solid #ACBED1;font-size: 12px"> 可用</td>
+                <td style="border:1px solid #ACBED1;font-size: 12px"> 使用率</td>
+            </tr>
+            </thead>
+            <tbody>
+
+            <% data.disks.forEach(disk => { %>
+                <tr>
+                    <td style="border:1px solid #ACBED1;font-size: 12px"> <%= disk.path %></td>
+                    <td style="border:1px solid #ACBED1;font-size: 12px"> <%= disk.mounted %></td>
+                    <td style="border:1px solid #ACBED1;font-size: 12px"> <%= disk.total %></td>
+                    <% if(disk.mounted === "/" && parseFloat(disk.used) < 10 ){ %>
+                        <td style="border:1px solid #ACBED1;font-size: 12px;color: red"> <%= disk.used %>G</td>
+                    <% }else{ %>
+                        <td style="border:1px solid #ACBED1;font-size: 12px;color: green"> <%= disk.used %>G</td>
+                    <% } %>
+
+                    <% if(disk.mounted !== "/" && parseFloat(disk.available) < 100 ){ %>
+                        <td style="border:1px solid #ACBED1;font-size: 12px;color: red"> <%= disk.available %>G</td>
+                    <% }else{ %>
+                        <td style="border:1px solid #ACBED1;font-size: 12px;color: green"> <%= disk.available %>G</td>
+                    <% } %>
+
+                    <td style="border:1px solid #ACBED1;font-size: 12px"> <%= disk.percent %></td>
+                </tr>
+            <% }) %>
+
+            </tbody>
+        </table>
+    <% }) %>
+</body>
+</html>

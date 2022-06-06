@@ -4,10 +4,11 @@ const app = express();
 const fs = require("fs");
 const ejs = require("ejs");
 const path = require("path");
-const {readMongo, connectMongo, closeConnect} = require('./mongodb');
-const diskTableName = 'disk';
+const {readConf} = require("./resolveConf");
+const {readDiskMetrics, readDiskOrg} = require('./disk')
+const {connectMongo, closeConnect} = require('./mongodb');
+const {readSummaryHtml, sendSummaryEmail} = require('./sumarry');
 const Port = 10010;
-
 const viewsPath = path.join(__dirname, 'views');
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -21,85 +22,27 @@ connectMongo().then(() => {
     console.log("连接mongo 失败", err);
 })
 
-function getLocalTime(nS) {
-    return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
-}
-
 const diskPath = path.join(__dirname, "./metrics.txt");
 const errorPath = path.join(__dirname, "./error.txt");
 
 //初始化 清空文件数据
 fs.writeFileSync(diskPath, "")
 
-function filterDisk(org){
-    let list = [];
-    let history = {}
-    org.map((item) => {
-        const {fullnode, disk, Mounted} = item;
-        let key = `${fullnode}_${disk}_${Mounted}`;
-        if(!history[key]){
-            list.push(item);
-        }
-        history[key] = key;
-    });
-    list = list.sort(function (a, b){
-        a = a.fullnode.replace(/[^\d]/g, "");
-        b = b.fullnode.replace(/[^\d]/g, "");
-        return parseInt(a) - parseInt(b);
-    })
-    return list;
-}
-
-async function readMetrics() {
-    return new Promise((resolve, reject) => {
-        let metrics = '';
-        readMongo(diskTableName).then((list) => {
-            filterDisk(list).map((item, index) => {
-                const {
-                    fullnode,
-                    disk,
-                    Total,
-                    Used,
-                    Avaliable,
-                    Use,
-                    Mounted,
-                    timestamp
-                } = item;
-                const path =     `path="${disk}"`;
-                const node =     `node="${fullnode}"`;
-                const mounted =  `mounted="${Mounted}"`;
-                const total = parseFloat(Total);
-                const usedValue =  parseFloat(Used);
-                const availableValue = parseFloat(Avaliable)
-                const percentValue = parseFloat(Use)
-                let time = getLocalTime(timestamp)
-
-                let params = `{${path}, ${node}, ${mounted}}`;
-                let blocks =     `sv_disk_blocks    ${params} ${total}\n`;
-                let used =       `sv_disk_used      ${params} ${usedValue}\n`;
-                let available =  `sv_disk_available ${params} ${availableValue}\n`;
-                let percent =    `sv_disk_percent   ${params} ${percentValue}\n\n`;
-
-                let note = `# ${index} ${time} 服务器: ${fullnode} 路径: ${disk} ， 挂载: ${Mounted} \n\n`
-
-                let m = `${note}${blocks}${used}${available}${percent}`;
-                metrics += m;
-            })
-            resolve && resolve(metrics);
-        }).catch((err) => {
-            reject(err)
-        })
-    })
-}
 
 app.get("/", (req, res) => {
-    res.send("hello to monitor exporter <a href='/metrics'>/metrics</a>");
+    res.send(`
+        <ol>
+            <li>Metrics <a href='/metrics'>/metrics</a></li> 
+            <li>Summary <a href='/summary'>/summary</a></li> 
+            <li>DiskOrg <a href='/diskOrg'>/diskOrg</a></li> 
+            <li>sendSummaryEmail <a href='/sendSummaryEmail'>/sendSummaryEmail</a></li> 
+        </ol>`);
 });
 
 
 app.get("/metrics", async (req, res) => {
     fs.writeFileSync(diskPath, "");
-    readMetrics().then((metrics) => {
+    readDiskMetrics().then((metrics) => {
         fs.writeFileSync(diskPath, `${metrics}`);
         res.sendFile(diskPath)
     }).catch((err) => {
@@ -108,9 +51,8 @@ app.get("/metrics", async (req, res) => {
     });
 });
 
-app.get("/disk", async (req, res) => {
-    readMongo(diskTableName).then((list) => {
-        console.log("list ==>", list);
+app.get("/diskOrg", async (req, res) => {
+    readDiskOrg().then((list) => {
         res.send(list)
     }).catch((err) => {
         res.send({
@@ -120,23 +62,40 @@ app.get("/disk", async (req, res) => {
     })
 });
 
-app.get("/close", async (req, res) => {
 
+app.get("/summary", function (req, res) {
+    readSummaryHtml().then((html) => {
+        res.send(html);
+    }).catch(() => {
+        res.send({
+            code: 1,
+            data: {},
+            msg: 'fail'
+        })
+    })
+});
+app.get("/sendSummaryEmail", function (req, res) {
+    sendSummaryEmail().then(() => {
+        res.send("发送成功")
+    }).catch(() => {
 
-    res.send("已经成功关闭");
-    closeConnect();
-    process.exit(0);
+    });
 });
 
-app.get('/webview/9090', function (req, res){
-    res.render('webview',{
-        url: "http://localhost:9090"
-    })
-})
-app.get('/webview/9093', function (req, res){
-    res.render('webview',{
-        url: "http://localhost:9093"
-    })
+setInterval(() => {
+    if(readConf("sendEmail")){
+        sendSummaryEmail().then(() => {
+            console.log("发送成功");
+        }).catch(() => {
+            console.log("发送失败");
+        });
+    }
+
+}, readConf("sendInterval"));
+
+process.on('exit', function (){
+    closeConnect();
+    console.log("释放资源")
 })
 
 //3.调用app.listen()函数启动服务器

@@ -1,0 +1,4 @@
+{
+    "sendEmail" : true,
+    "sendInterval": 7200000
+}

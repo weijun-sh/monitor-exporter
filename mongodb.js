@@ -4,7 +4,6 @@ const host = '112.74.110.203';
 const port = '20525';
 const address = `${host}:${port}`;
 const dbName = 'fullnode';
-const tableName = 'disk';
 const username = 'rReadonly';
 const password = 'r_20220525OH'
 
