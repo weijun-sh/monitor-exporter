@@ -1,0 +1,15 @@
+sv_disk_blocks      {node="node00"}   100
+sv_disk_blocks      {node="node06"}   200
+sv_disk_blocks      {node="node16"}   100
+
+sv_disk_used        {node="node00"}   40
+sv_disk_used        {node="node06"}   80
+sv_disk_used        {node="node16"}   20
+
+sv_disk_available   {node="node00"}   60
+sv_disk_available   {node="node06"}   60
+sv_disk_available   {node="node16"}   80
+
+sv_disk_percent     {node="node00"}   40%
+sv_disk_percent     {node="node06"}   40%
+sv_disk_percent     {node="node16"}   20%
