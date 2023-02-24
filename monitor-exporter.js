@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 /*const bodyParser = require("body-parser");
 const fs = require("fs");
 const ejs = require("ejs");
-const path = require("path");
 const {readConf} = require("./resolveConf");
 const {readDiskMetrics, readDiskOrg} = require('./disk')
 const {connectMongo, closeConnect} = require('./mongodb');
@@ -24,8 +24,8 @@ connectMongo().then(() => {
 })
 */
 
-/*const diskPath = path.join(__dirname, "./metrics.txt");
-const errorPath = path.join(__dirname, "./error.txt");*/
+const diskPath = path.join(__dirname, "./metrics.txt");
+const errorPath = path.join(__dirname, "./error.txt");
 
 //初始化 清空文件数据
 //fs.writeFileSync(diskPath, "")
