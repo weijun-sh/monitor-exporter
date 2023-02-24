@@ -34,10 +34,10 @@ const errorPath = path.join(__dirname, "./error.txt");
 app.get("/", (req, res) => {
     res.send(`
         <ol>
-            <li>Metrics <a href='/metrics'>/metrics</a></li> 
-            <li>Summary <a href='/summary'>/summary</a></li> 
-            <li>DiskOrg <a href='/diskOrg'>/diskOrg</a></li> 
-            <li>sendSummaryEmail <a href='/sendSummaryEmail'>/sendSummaryEmail</a></li> 
+            <li>Metrics <a href='/metrics'>/metrics</a></li>
+            <li>Summary <a href='/summary'>/summary</a></li>
+            <li>DiskOrg <a href='/diskOrg'>/diskOrg</a></li>
+            <li>sendSummaryEmail <a href='/sendSummaryEmail'>/sendSummaryEmail</a></li>
         </ol>`);
 });
 
@@ -45,14 +45,14 @@ app.get("/", (req, res) => {
 app.get("/metrics", async (req, res) => {
     res.sendFile(diskPath)
     return;
-/*    fs.writeFileSync(diskPath, "");
-    readDiskMetrics().then((metrics) => {
-        fs.writeFileSync(diskPath, `${metrics}`);
-        res.sendFile(diskPath)
-    }).catch((err) => {
-        fs.writeFileSync(diskPath, err);
-        res.sendFile(errorPath)
-    });*/
+    /*    fs.writeFileSync(diskPath, "");
+        readDiskMetrics().then((metrics) => {
+            fs.writeFileSync(diskPath, `${metrics}`);
+            res.sendFile(diskPath)
+        }).catch((err) => {
+            fs.writeFileSync(diskPath, err);
+            res.sendFile(errorPath)
+        });*/
 });
 
 /*
